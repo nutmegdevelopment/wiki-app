@@ -7,19 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nutmeg.wikipedia.R;
+import com.nutmeg.wikipedia.api.service.model.image.ImageResult;
 import com.nutmeg.wikipedia.api.service.model.page.CategoryMember;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
-    // Store a member variable for the contacts
-    private List<CategoryMember> categoryMembers;
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder>
+        implements CategoryFragment.Listener {
 
-    // Store the context for easy access
+    private final List<CategoryMember> categoryMembers;
+    private final List<ImageResult> imageResults;
 
-    public CategoryAdapter(List<CategoryMember> categoryMembers) {
-        this.categoryMembers = categoryMembers;
+    public CategoryAdapter() {
+        categoryMembers = new ArrayList<>();
+        imageResults = new ArrayList<>();
     }
 
     @Override
@@ -32,20 +35,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
         //Return a new holder instance
         return new CategoryViewHolder(context, itemView);
-
     }
-
-
-
 
     @Override
     public void onBindViewHolder(CategoryViewHolder categoryViewHolder, int position) {
         CategoryMember categoryMember = categoryMembers.get(position);
-        categoryViewHolder.setCategoryMember(categoryMember);
+        ImageResult imageResult = imageResults.get(position);
+        categoryViewHolder.setCategoryMember(categoryMember, imageResult);
     }
 
     @Override
     public int getItemCount() {
         return categoryMembers.size();
     }
+
+    @Override
+    public void onResultsAvailable(List<CategoryMember> categoryMembers,
+                                   List<ImageResult> resultList) {
+        imageResults.clear();
+        imageResults.addAll(resultList);
+        this.categoryMembers.clear();
+        this.categoryMembers.addAll(categoryMembers);
+        notifyDataSetChanged();
+    }
 }
+
+
+
+
+

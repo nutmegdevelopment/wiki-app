@@ -32,5 +32,7 @@ public class CategoryMember {
                 ", pageId='" + pageId + '\'' +
                 '}';
     }
+
+
 }
 
