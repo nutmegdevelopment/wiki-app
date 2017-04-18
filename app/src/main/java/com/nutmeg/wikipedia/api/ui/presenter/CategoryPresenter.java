@@ -29,7 +29,7 @@ public class CategoryPresenter {
 
     public CategoryPresenter(CategoryFragment fragment) {
         this.fragment = fragment;
-        client = WikiService.getClient().create(WikiClient.class);
+        client = WikiService.getRetrofit().create(WikiClient.class);
     }
 
     public Observable<CategoryMember> getCategoryMemberObservable(String category) {
