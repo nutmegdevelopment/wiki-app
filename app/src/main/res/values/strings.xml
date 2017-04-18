@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Wikipedia</string>
+    <string name="api_base_url">http://en.wikipedia.org/w/api.php</string>
+    <string name="api_action">query</string>
+    <string name="api_page_list">categorymembers</string>
+    <string name="api_fruit_page_cmtitle">Category:Fruit</string>
+    <string name="api_vegetable_cmtitle">Category:Vegetables</string>
+    <string name="api_image_pageids">pageids</string>
+    <string name="api_image_prop">pageimages</string>
+    <string name="api_image_pithumbsize">pithumbsize</string>
+    <string name="api_format">json</string>
+    <integer name="thumbnail_size">800</integer>
+</resources>
