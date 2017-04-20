@@ -33,7 +33,7 @@ public class CategoryFragment extends Fragment {
     }
 
     public CategoryFragment() {
-        presenter = new CategoryPresenter(this);
+        presenter = new CategoryPresenter();
     }
 
     @Override

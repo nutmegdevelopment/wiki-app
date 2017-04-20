@@ -24,11 +24,9 @@ import static android.content.ContentValues.TAG;
 public class CategoryPresenter {
 
     private final WikiClient client;
-    private final CategoryFragment fragment;
     private Context context;
 
-    public CategoryPresenter(CategoryFragment fragment) {
-        this.fragment = fragment;
+    public CategoryPresenter() {
         client = WikiService.getRetrofit().create(WikiClient.class);
     }
 
