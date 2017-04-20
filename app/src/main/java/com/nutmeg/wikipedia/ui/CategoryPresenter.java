@@ -1,19 +1,19 @@
-package com.nutmeg.wikipedia.api.ui.presenter;
+package com.nutmeg.wikipedia.ui;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.nutmeg.wikipedia.R;
-import com.nutmeg.wikipedia.api.service.WikiClient;
-import com.nutmeg.wikipedia.api.service.WikiService;
-import com.nutmeg.wikipedia.api.service.model.image.ImageResult;
-import com.nutmeg.wikipedia.api.service.model.image.Thumbnail;
-import com.nutmeg.wikipedia.api.service.model.page.CategoryMember;
-import com.nutmeg.wikipedia.api.service.model.page.PageList;
-import com.nutmeg.wikipedia.api.service.model.page.PageResult;
-import com.nutmeg.wikipedia.api.ui.CategoryFragment;
+import com.nutmeg.wikipedia.api.WikiClient;
+import com.nutmeg.wikipedia.api.model.image.ImageResult;
+import com.nutmeg.wikipedia.api.model.image.Thumbnail;
+import com.nutmeg.wikipedia.api.model.page.CategoryMember;
+import com.nutmeg.wikipedia.api.model.page.PageList;
+import com.nutmeg.wikipedia.api.model.page.PageResult;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -24,12 +24,11 @@ import static android.content.ContentValues.TAG;
 public class CategoryPresenter {
 
     private final WikiClient client;
-    private final CategoryFragment fragment;
     private Context context;
 
-    public CategoryPresenter(CategoryFragment fragment) {
-        this.fragment = fragment;
-        client = WikiService.getRetrofit().create(WikiClient.class);
+    @Inject
+    public CategoryPresenter(WikiClient client) {
+        this.client = client;
     }
 
     public Observable<CategoryMember> getCategoryMemberObservable(String category) {

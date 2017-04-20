@@ -1,4 +1,4 @@
-package com.nutmeg.wikipedia.api.service.model.page;
+package com.nutmeg.wikipedia.api.model.page;
 
 import com.google.gson.annotations.SerializedName;
 

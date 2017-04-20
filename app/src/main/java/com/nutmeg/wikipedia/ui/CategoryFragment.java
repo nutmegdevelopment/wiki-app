@@ -1,4 +1,4 @@
-package com.nutmeg.wikipedia.api.ui;
+package com.nutmeg.wikipedia.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,17 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nutmeg.wikipedia.R;
-import com.nutmeg.wikipedia.api.service.model.image.ImageResult;
-import com.nutmeg.wikipedia.api.service.model.page.CategoryMember;
-import com.nutmeg.wikipedia.api.ui.presenter.CategoryPresenter;
+import com.nutmeg.wikipedia.api.model.image.ImageResult;
+import com.nutmeg.wikipedia.api.model.page.CategoryMember;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class CategoryFragment extends Fragment {
 
     private final static String CATEGORY_KEY = "CATEGORY_KEY";
 
-    private final CategoryPresenter presenter;
+    @Inject
+    CategoryPresenter presenter;
+
     private String category;
 
     public static CategoryFragment newInstance(String category) {
@@ -32,13 +35,10 @@ public class CategoryFragment extends Fragment {
         return fragment;
     }
 
-    public CategoryFragment() {
-        presenter = new CategoryPresenter(this);
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         Bundle bundle = savedInstanceState == null ? getArguments() : savedInstanceState;
         category = bundle.getString(CATEGORY_KEY);
 

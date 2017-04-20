@@ -1,4 +1,4 @@
-package com.nutmeg.wikipedia.api.service.model.image;
+package com.nutmeg.wikipedia.api.model.image;
 
 public class Thumbnail {
     private String source;

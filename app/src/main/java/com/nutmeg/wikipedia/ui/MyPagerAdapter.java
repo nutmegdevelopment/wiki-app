@@ -1,4 +1,4 @@
-package com.nutmeg.wikipedia.api.ui;
+package com.nutmeg.wikipedia.ui;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
