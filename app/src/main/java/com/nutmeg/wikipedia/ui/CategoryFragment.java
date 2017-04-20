@@ -11,8 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nutmeg.wikipedia.R;
-import com.nutmeg.wikipedia.api.model.image.ImageResult;
-import com.nutmeg.wikipedia.api.model.page.CategoryMember;
+import com.nutmeg.wikipedia.WikiApplication;
+import com.nutmeg.wikipedia.core.api.model.image.ImageResult;
+import com.nutmeg.wikipedia.core.api.model.page.CategoryMember;
 
 import java.util.List;
 
@@ -36,11 +37,22 @@ public class CategoryFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        CategoryComponent categoryComponent = DaggerCategoryComponent.builder()
+                .applicationComponent(WikiApplication.getApplicationComponent())
+                .build();
+
+        categoryComponent.inject(this);
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         Bundle bundle = savedInstanceState == null ? getArguments() : savedInstanceState;
         category = bundle.getString(CATEGORY_KEY);
+        presenter.setContext(getContext());
 
         CategoryAdapter adapter = new CategoryAdapter();
 
@@ -62,7 +74,6 @@ public class CategoryFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         category = context.getString(R.string.api_fruit_page_cmtitle);
-        presenter.setContext(context);
     }
 
     @Override

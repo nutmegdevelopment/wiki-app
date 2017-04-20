@@ -4,12 +4,12 @@ import android.content.Context;
 import android.util.Log;
 
 import com.nutmeg.wikipedia.R;
-import com.nutmeg.wikipedia.api.WikiClient;
-import com.nutmeg.wikipedia.api.model.image.ImageResult;
-import com.nutmeg.wikipedia.api.model.image.Thumbnail;
-import com.nutmeg.wikipedia.api.model.page.CategoryMember;
-import com.nutmeg.wikipedia.api.model.page.PageList;
-import com.nutmeg.wikipedia.api.model.page.PageResult;
+import com.nutmeg.wikipedia.core.api.WikiClient;
+import com.nutmeg.wikipedia.core.api.model.image.ImageResult;
+import com.nutmeg.wikipedia.core.api.model.image.Thumbnail;
+import com.nutmeg.wikipedia.core.api.model.page.CategoryMember;
+import com.nutmeg.wikipedia.core.api.model.page.PageList;
+import com.nutmeg.wikipedia.core.api.model.page.PageResult;
 
 import java.util.List;
 

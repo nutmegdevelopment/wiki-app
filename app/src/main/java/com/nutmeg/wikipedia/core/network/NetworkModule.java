@@ -1,4 +1,4 @@
-package com.nutmeg.wikipedia.network;
+package com.nutmeg.wikipedia.core.network;
 
 import javax.inject.Singleton;
 

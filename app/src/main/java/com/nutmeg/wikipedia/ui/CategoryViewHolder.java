@@ -7,9 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nutmeg.wikipedia.R;
-import com.nutmeg.wikipedia.api.model.image.ImageResult;
-import com.nutmeg.wikipedia.api.model.image.Thumbnail;
-import com.nutmeg.wikipedia.api.model.page.CategoryMember;
+import com.nutmeg.wikipedia.core.api.model.image.ImageResult;
+import com.nutmeg.wikipedia.core.api.model.image.Thumbnail;
+import com.nutmeg.wikipedia.core.api.model.page.CategoryMember;
 import com.squareup.picasso.Picasso;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder {

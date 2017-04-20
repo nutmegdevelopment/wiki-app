@@ -1,7 +1,7 @@
-package com.nutmeg.wikipedia.api;
+package com.nutmeg.wikipedia.core.api;
 
-import com.nutmeg.wikipedia.api.model.image.ImageResult;
-import com.nutmeg.wikipedia.api.model.page.PageResult;
+import com.nutmeg.wikipedia.core.api.model.image.ImageResult;
+import com.nutmeg.wikipedia.core.api.model.page.PageResult;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

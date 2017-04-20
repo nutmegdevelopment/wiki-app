@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nutmeg.wikipedia.R;
-import com.nutmeg.wikipedia.api.model.image.ImageResult;
-import com.nutmeg.wikipedia.api.model.page.CategoryMember;
+import com.nutmeg.wikipedia.core.api.model.image.ImageResult;
+import com.nutmeg.wikipedia.core.api.model.page.CategoryMember;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,8 @@
-package com.nutmeg.wikipedia.rest;
+package com.nutmeg.wikipedia.core.rest;
 
 import com.google.gson.Gson;
-import com.nutmeg.wikipedia.deserialiser.GsonModule;
+import com.nutmeg.wikipedia.core.deserialiser.GsonModule;
+import com.nutmeg.wikipedia.injection.scopes.FragmentScope;
 
 import javax.inject.Singleton;
 
