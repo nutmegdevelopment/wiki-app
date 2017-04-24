@@ -24,11 +24,13 @@ import static android.content.ContentValues.TAG;
 public class CategoryPresenter {
 
     private final WikiClient client;
-    private Context context;
+    private final Context context;
 
     @Inject
-    public CategoryPresenter(WikiClient client) {
+    public CategoryPresenter(WikiClient client,
+                             Context context) {
         this.client = client;
+        this.context = context;
     }
 
     public Observable<CategoryMember> getCategoryMemberObservable(String category) {
@@ -47,13 +49,15 @@ public class CategoryPresenter {
     }
 
     private Observable<PageResult> getPageResultObservable(String category) {
-        return client.getPage(
+        Observable<PageResult> page = client.getPage(
                 context.getString(R.string.api_action),
                 context.getString(R.string.api_page_list),
                 category,
                 context.getString(R.string.api_format),
                 null
         );
+
+        return page;
     }
 
     public Observable<ImageResult> getImageObservable(int pageId) {
@@ -99,7 +103,4 @@ public class CategoryPresenter {
                 );
     }
 
-    public void setContext(Context context) {
-        this.context = context;
-    }
 }
