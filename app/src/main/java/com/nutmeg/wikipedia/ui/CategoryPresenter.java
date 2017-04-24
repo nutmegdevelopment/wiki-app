@@ -24,6 +24,7 @@ import static android.content.ContentValues.TAG;
 public class CategoryPresenter {
 
     private final WikiClient client;
+
     private final Context context;
 
     @Inject
