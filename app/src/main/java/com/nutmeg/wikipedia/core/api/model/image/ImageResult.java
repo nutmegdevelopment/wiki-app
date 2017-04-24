@@ -1,4 +1,4 @@
-package com.nutmeg.wikipedia.api.service.model.image;
+package com.nutmeg.wikipedia.core.api.model.image;
 
 public class ImageResult {
     private Integer pageid;

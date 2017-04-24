@@ -1,5 +1,6 @@
-package com.nutmeg.wikipedia.api.ui;
+package com.nutmeg.wikipedia.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,17 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nutmeg.wikipedia.R;
-import com.nutmeg.wikipedia.api.service.model.image.ImageResult;
-import com.nutmeg.wikipedia.api.service.model.page.CategoryMember;
-import com.nutmeg.wikipedia.api.ui.presenter.CategoryPresenter;
+import com.nutmeg.wikipedia.WikiApplication;
+import com.nutmeg.wikipedia.core.api.model.image.ImageResult;
+import com.nutmeg.wikipedia.core.api.model.page.CategoryMember;
+import com.nutmeg.wikipedia.injection.ApplicationComponent;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class CategoryFragment extends Fragment {
 
     private final static String CATEGORY_KEY = "CATEGORY_KEY";
 
-    private final CategoryPresenter presenter;
+    @Inject
+    CategoryPresenter presenter;
+
     private String category;
 
     public static CategoryFragment newInstance(String category) {
@@ -32,13 +38,10 @@ public class CategoryFragment extends Fragment {
         return fragment;
     }
 
-    public CategoryFragment() {
-        presenter = new CategoryPresenter();
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         Bundle bundle = savedInstanceState == null ? getArguments() : savedInstanceState;
         category = bundle.getString(CATEGORY_KEY);
 
@@ -61,8 +64,20 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        inject(context);
         category = context.getString(R.string.api_fruit_page_cmtitle);
-        presenter.setContext(context);
+    }
+
+    private void inject(Context context) {
+        ApplicationComponent applicationComponent = WikiApplication.getApplicationComponent();
+
+        CategoryComponent categoryComponent = DaggerCategoryComponent
+                .builder()
+                .applicationComponent(applicationComponent)
+                .categoryModule(new CategoryModule(context))
+                .build();
+
+        categoryComponent.inject(this);
     }
 
     @Override
