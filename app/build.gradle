@@ -8,6 +8,7 @@ retrolambda {
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
     defaultConfig {
         applicationId "com.nutmeg.wikipedia"
         minSdkVersion 16
@@ -15,6 +16,30 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets {
+        test {
+            assets.srcDirs += ['src/test/assets']
+            resources.srcDirs += ['src/test/res']
+        }
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of the default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+
+        debug {
+            assets.srcDirs = ['src/main/assets', 'src/debug/assets']
+        }
+
+        release {
+            assets.srcDirs = ['src/main/assets']
+        }
     }
 
     buildTypes {
@@ -28,6 +53,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 ext {
@@ -37,10 +66,6 @@ ext {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:recyclerview-v7:25.3.0'
@@ -61,6 +86,6 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
 
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.7.22'
-    androidTestCompile 'org.mockito:mockito-android:2.7.22'
+    testCompile "org.robolectric:robolectric:3.3.1"
+    testCompile 'org.mockito:mockito-core:2.1.0'
 }

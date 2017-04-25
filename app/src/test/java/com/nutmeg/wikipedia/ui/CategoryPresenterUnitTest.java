@@ -3,34 +3,26 @@ package com.nutmeg.wikipedia.ui;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.nutmeg.wikipedia.BuildConfig;
 import com.nutmeg.wikipedia.R;
 import com.nutmeg.wikipedia.core.api.WikiClient;
-import com.nutmeg.wikipedia.core.api.model.page.CategoryMember;
 import com.nutmeg.wikipedia.core.api.model.page.PageResult;
-import com.nutmeg.wikipedia.core.deserialiser.GsonModule;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.robolectric.annotation.Config;
 
 import io.reactivex.Observable;
 
-import static io.reactivex.Observable.just;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+
+@RunWith(CustomRobolectricTestRunner.class)
+@Config(constants = BuildConfig.class)
 public class CategoryPresenterUnitTest {
 
     private WikiClient mockWikiClient;
